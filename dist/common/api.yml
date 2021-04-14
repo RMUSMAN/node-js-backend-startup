@@ -1,0 +1,1309 @@
+openapi: 3.0.1
+info:
+  title: naplozz-backend
+  description: Naplozz logging app
+  version: 1.0.0
+servers:
+  - url: /api/v1
+tags:
+  # - name: Examples
+  - name: Auth
+    description: Simple Auth endpoints
+  - name: User
+    description: Simple User endpoints
+  - name: Site
+    description: Simple Site endpoints
+  - name: Specification
+    description: The swagger API specification
+paths:
+  # /examples:
+  #   get:
+  #     tags:
+  #       - Examples
+  #     description: Fetch all examples
+  #     responses:
+  #       200:
+  #         description: Return the example with the specified id
+  #         content:
+  #           application/json:
+  #             schema:
+  #               type: array
+  #               items:
+  #                 $ref: "#/components/schemas/Example"
+  #       4XX:
+  #         description: Example not found
+  #         content:
+  #           application/json:
+  #             schema:
+  #               $ref: "#/components/schemas/Error"
+  #       5XX:
+  #         description: Example not found
+  #         content:
+  #           application/json:
+  #             schema:
+  #               $ref: "#/components/schemas/Error"
+  #   post:
+  #     tags:
+  #       - Examples
+  #     description: Create a new example
+  #     requestBody:
+  #       description: an example
+  #       content:
+  #         application/json:
+  #           schema:
+  #             $ref: "#/components/schemas/ExampleBody"
+  #       required: true
+  #     responses:
+  #       201:
+  #         description: Return the example with the specified id
+  #         content:
+  #           application/json:
+  #             schema:
+  #               $ref: "#/components/schemas/Example"
+  #       4XX:
+  #         description: Example not found
+  #         content:
+  #           application/json:
+  #             schema:
+  #               $ref: "#/components/schemas/Error"
+  #       5XX:
+  #         description: Example not found
+  #         content:
+  #           application/json:
+  #             schema:
+  #               $ref: "#/components/schemas/Error"
+  # /examples/{id}:
+  #   get:
+  #     tags:
+  #       - Examples
+  #     parameters:
+  #       - name: id
+  #         in: path
+  #         description: The id of the example to retrieve
+  #         required: true
+  #         schema:
+  #           type: integer
+  #     responses:
+  #       200:
+  #         description: Return the example with the specified id
+  #         content:
+  #           application/json:
+  #             schema:
+  #               $ref: "#/components/schemas/Example"
+  #       4XX:
+  #         description: Example not found
+  #         content:
+  #           application/json:
+  #             schema:
+  #               $ref: "#/components/schemas/Error"
+  #       5XX:
+  #         description: Example not found
+  #         content:
+  #           application/json:
+  #             schema:
+  #               $ref: "#/components/schemas/Error"
+  /auth/signUp:
+    post:
+      tags:
+        - Auth
+      description: Create a new account
+      requestBody:
+        description: "Verification email with code sent to your email account"
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SignUpBody"
+        required: true
+      responses:
+        201:
+          description: Email is sent to your account
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Example"
+        4XX:
+          description: Example not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        5XX:
+          description: Example not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /auth/signIn:
+    post:
+      tags:
+        - Auth
+      description: Account Login
+      requestBody:
+        description: "Account Login"
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SignInBody"
+        required: true
+      responses:
+        201:
+          description: Logged in Successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Example"
+        4XX:
+          description: Example not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        5XX:
+          description: Example not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /auth/verifyAccount:
+    patch:
+      tags:
+        - Auth
+      description: Account Verification
+      requestBody:
+        description: "Account Verification"
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/VerifyEmailBody"
+        required: true
+      responses:
+        201:
+          description: account verified in Successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Example"
+        4XX:
+          description: Example not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        5XX:
+          description: Example not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /auth/forgotPassword:
+    post:
+      tags:
+        - Auth
+      description: Account Verification
+      requestBody:
+        description: "Account Verification"
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ForgotPasswordBody"
+        required: true
+      responses:
+        201:
+          description: account verified in Successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Example"
+        4XX:
+          description: Example not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        5XX:
+          description: Example not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /auth/resend:
+    post:
+      tags:
+        - Auth
+      description: Account Verification code
+      requestBody:
+        description: "Account Verification code"
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ForgotPasswordBody"
+        required: true
+      responses:
+        201:
+          description: Code sent successfully in Successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Example"
+        4XX:
+          description: Example not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        5XX:
+          description: Example not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /auth/resetPassword:
+    patch:
+      tags:
+        - Auth
+      description: Account Verification code
+      requestBody:
+        description: "Account Verification code"
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ResetPasswordBody"
+        required: true
+      responses:
+        201:
+          description: Code sent successfully in Successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Example"
+        4XX:
+          description: Example not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        5XX:
+          description: Example not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /auth/facebookLogin:
+    post:
+      tags:
+        - Auth
+      description: Sign In facebook
+      requestBody:
+        description: "Sign In facebook"
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/FacebookSignInBody"
+        required: true
+      responses:
+        201:
+          description: login in Successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Example"
+        4XX:
+          description: Example not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        5XX:
+          description: Example not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /auth/googleLogin:
+    post:
+      tags:
+        - Auth
+      description: Sign In google
+      requestBody:
+        description: "Sign In google"
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/GoogleSignInBody"
+        required: true
+      responses:
+        201:
+          description: login in Successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Example"
+        4XX:
+          description: Example not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        5XX:
+          description: Example not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  
+  /users:
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+        - User
+      description: Fetch all Users
+      responses:
+        200:
+          description: Return the all users
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Example"
+        4XX:
+          description: Users not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        5XX:
+          description: Users not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          $ref: "#/components/responses/UnauthorizedError"
+
+    post:
+      security:
+        - bearerAuth: []
+      tags:
+        - User
+      description: Send invite to User
+      requestBody:
+        description: send invite to user in site with specific role
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserInviteBody"
+        required: true
+      responses:
+        201:
+          description: Return the message that invite is sent to user
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Example"
+        4XX:
+          description: Site not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        5XX:
+          description: Site not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /users/changePassword:
+    post:
+      security:
+        - bearerAuth: []
+      tags:
+        - User
+      description: change password
+      requestBody:
+        description: "change password"
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ChangePasswordBody"
+        required: true
+      responses:
+        201:
+          description: Password successfully changed
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Example"
+        4XX:
+          description: Example not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        5XX:
+          description: Example not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  
+  /users/{id}:
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+        - User
+      parameters:
+        - name: id
+          in: path
+          description: The id of the user to retrieve
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Return the user with the specified id
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Example"
+        4XX:
+          description: User not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        5XX:
+          description: User not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Access token is missing or invalid
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/UnauthorizedError"
+    patch:
+      security:
+        - bearerAuth: []
+      tags:
+        - User
+      parameters:
+        - name: id
+          in: path
+          description: The id of the user to update
+          required: true
+          schema:
+            type: string
+      description: update User
+      requestBody:
+        description: "update User"
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateUserBody"
+        required: true
+      responses:
+        201:
+          description: User successfully updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Example"
+        4XX:
+          description: Example not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        5XX:
+          description: Example not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /users/updateProfile:
+    post:
+      security:
+        - bearerAuth: []
+      tags:
+        - User
+      description: update your profile
+      requestBody:
+        description: update your profile
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateProfileBody"
+        required: true
+      responses:
+        201:
+          description: Profile is updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Example"
+        4XX:
+          description: Site not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        5XX:
+          description: Site not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /users/setupAccount:
+    patch:
+      tags:
+        - User
+      description: complete your profile
+      requestBody:
+        description: complete your profile to login from app
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SetUpAccountBody"
+        required: true
+      responses:
+        201:
+          description: Return the message that user successfully set up account
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Example"
+        4XX:
+          description: Site not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        5XX:
+          description: Site not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /sites:
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+        - Site
+      description: Fetch all Sites
+      responses:
+        200:
+          description: Return the all Admin sites
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Example"
+        4XX:
+          description: Sites not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        5XX:
+          description: Sites not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    post:
+      security:
+        - bearerAuth: []
+      tags:
+        - Site
+      description: Create a new example
+      requestBody:
+        description: an example
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SiteBody"
+        required: true
+      responses:
+        201:
+          description: Return the site with the specified id
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Example"
+        4XX:
+          description: Site not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        5XX:
+          description: Site not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /sites/{id}:
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+        - Site
+      parameters:
+        - name: id
+          in: path
+          description: The id of the Site to retrieve
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Return the Site with the specified id
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Example"
+        4XX:
+          description: Site not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        5XX:
+          description: Site not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    patch:
+      security:
+        - bearerAuth: []
+      tags:
+        - Site
+      parameters:
+        - name: id
+          in: path
+          description: The id of the Site to update
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: an example
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateSiteBody"
+        required: true
+      responses:
+        200:
+          description: Return the Site with the specified id
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Example"
+        4XX:
+          description: Site not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        5XX:
+          description: Site not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /groups:
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+        - Group
+      description: Fetch all groups
+      responses:
+        200:
+          description: Return the all Admin groups
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Example"
+        4XX:
+          description: groups not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        5XX:
+          description: groups not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    post:
+      security:
+        - bearerAuth: []
+      tags:
+        - Group
+      description: Create a new example
+      requestBody:
+        description: an example
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/GroupBody"
+        required: true
+      responses:
+        201:
+          description: Return the group with the specified id
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Example"
+        4XX:
+          description: Group not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        5XX:
+          description: Group not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /groups/{id}:
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+        - Group
+      parameters:
+        - name: id
+          in: path
+          description: The id of the group to retrieve
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Return the group with the specified id
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Example"
+        4XX:
+          description: group not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        5XX:
+          description: group not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    patch:
+      security:
+        - bearerAuth: []
+      tags:
+        - Group
+      parameters:
+        - name: id
+          in: path
+          description: The id of the Group to update
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: an example
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateGroupBody"
+        required: true
+      responses:
+        200:
+          description: Return the Group with the specified id
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Example"
+        4XX:
+          description: Group not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        5XX:
+          description: Group not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /tasks:
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+        - Task
+      description: Fetch all Tasks
+      responses:
+        200:
+          description: Return the all Admin Tasks
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Example"
+        4XX:
+          description: Tasks not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        5XX:
+          description: Tasks not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    post:
+      security:
+        - bearerAuth: []
+      tags:
+        - Task
+      description: Create a new example
+      requestBody:
+        description: an example
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TaskBody"
+        required: true
+      responses:
+        201:
+          description: Return the site with the specified id
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Example"
+        4XX:
+          description: Task not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        5XX:
+          description: Task not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /tasks/{id}:
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+        - Task
+      parameters:
+        - name: id
+          in: path
+          description: The id of the Task to retrieve
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Return the Task with the specified id
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Example"
+        4XX:
+          description: Task not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        5XX:
+          description: Task not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    patch:
+      security:
+        - bearerAuth: []
+      tags:
+        - Task
+      parameters:
+        - name: id
+          in: path
+          description: The id of the Task to update
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: an example
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateTaskBody"
+        required: true
+      responses:
+        200:
+          description: Return the Task with the specified id
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Example"
+        4XX:
+          description: Task not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        5XX:
+          description: Task not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  
+  /spec:
+    get:
+      tags:
+        - Specification
+      responses:
+        200:
+          description: Return the API specification
+          content: {}
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  responses:
+    UnauthorizedError:
+      description: Access token is missing or invalid
+  schemas:
+    Example:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        message:
+          type: string
+          example: "Verification email with code sent to your email account"
+    Error:
+      type: object
+      additionalProperties: true
+
+    ExampleBody:
+      title: example
+      required:
+        - name
+      type: object
+      properties:
+        name:
+          type: string
+          example: no_stress
+    SignUpBody:
+      title: Auth
+      required:
+        - firstName
+        - lastName
+        - email
+        - password
+      type: object
+      properties:
+        firstName:
+          type: string
+          example: Basit
+        lastName:
+          type: string
+          example: Sattar
+        email:
+          type: string
+          example: basitsattar850@gmail.com
+        password:
+          type: string
+          example: "12345678"
+    SignInBody:
+      title: Auth
+      required:
+        - email
+        - password
+      type: object
+      properties:
+        email:
+          type: string
+          example: basitsattar850@gmail.com
+        password:
+          type: string
+          example: "12345678"
+   
+   
+    FacebookSignInBody:
+      title: Auth
+      required:
+        - accessToken
+        - userId
+      type: object
+      properties:
+        accessToken:
+          type: string
+          example: tokenTakenFromFacebook
+        userId:
+          type: string
+          example: "idFormFacebook"
+    GoogleSignInBody:
+      title: Auth
+      required:
+        - token
+      type: object
+      properties:
+        token:
+          type: string
+          example: tokenTakenFromGoogle
+    VerifyEmailBody:
+      title: Auth
+      required:
+        - token
+      type: object
+      properties:
+        token:
+          type: string
+          example: "123456"
+    ForgotPasswordBody:
+      title: Auth
+      required:
+        - email
+      type: object
+      properties:
+        email:
+          type: string
+          example: basitsattar850@gmail.com
+    ChangePasswordBody:
+      title: User
+      required:
+        - password
+        - newPassword
+      type: object
+      properties:
+        password:
+          type: string
+          example: "12345678"
+        newPassword:
+          type: string
+          example: "123456"
+    SiteBody:
+      title: Site
+      required:
+        - name
+      type: object
+      properties:
+        name:
+          type: string
+          example: Hashlogics
+        logo:
+          type: string
+          example: "12345678"
+        description:
+          type: string
+          example: "12345678"
+    UpdateSiteBody:
+      title: Site
+      type: object
+      properties:
+        name:
+          type: string
+          example: Hashlogics
+        logo:
+          type: string
+          example: "12345678"
+        description:
+          type: string
+          example: "12345678" 
+    ResetPasswordBody:
+      title: User
+      required:
+        - token
+        - password
+      type: object
+      properties:
+        token:
+          type: string
+          example: "123456"
+        password:
+          type: string
+          example: "12345678"
+    UserInviteBody:
+      title: User
+      required:
+        - firstName
+        - lastName
+        - email
+        - role
+      type: object
+      properties:
+        firstName:
+          type: string
+          example: Basit
+        lastName:
+          type: string
+          example: Sattar
+        email:
+          type: string
+          example: basitsattar850@gmail.com
+        role:
+          type: string
+          example: "supervisor"
+        site:
+          type: string
+          example: "idOfSite"
+        siteName:
+          type: string
+          example: "name of site"
+    SetUpAccountBody:
+      title: User
+      required:
+        - token
+        - password
+      type: object
+      properties:
+        token:
+          type: string
+          example: pleaseSendTokenReceivedFromLink
+        password:
+          type: string
+          example: "1234567"
+    UpdateUserBody:
+      title: User
+      type: object
+      properties:
+        firstName:
+          type: string
+          example: Basit
+        lastName:
+          type: string
+          example: Sattar
+        role:
+          type: string
+          example: "supervisor"
+        avatar: 
+          type: string
+          example: avatarLink
+    UpdateProfileBody:
+      title: User
+      type: object
+      properties:
+        firstName:
+          type: string
+          example: Basit
+        lastName:
+          type: string
+          example: Sattar
+        avatar: 
+          type: string
+          example: avatarLink
+    GroupBody:
+      title: Group
+      required:
+        - name
+      type: object
+      properties:
+        name:
+          type: string
+          example: Hashlogics
+        creator:
+          type: string
+          example: "creatorId"
+        site:
+          type: string
+          example: "siteId"
+        members:
+          type: array
+          items:
+            type: string
+            example: "idOfMember"
+    UpdateGroupBody:
+      title: Group
+      type: object
+      properties:
+        name:
+          type: string
+          example: Hashlogics
+        members:
+          type: array
+          items:
+            type: string
+            example: "idOfMember"
+        site:
+          type: string
+          example: "siteOfGroup" 
+    TaskBody:
+      title: Task
+      type: object
+      properties:
+        title:
+          type: string
+          example: Hashlogics
+        description:
+          type: string
+          example: "12345678"
+        assignee:
+          type: string
+          example: "assigneeId"
+        dueDate:
+          type: string
+          example: "assigneeId"
+        priority:
+          type: string
+          example: "not yet working"
+        status:
+          type: string
+          example: "not yet started"
+    UpdateTaskBody:
+      title: Task
+      type: object
+      properties:
+        title:
+          type: string
+          example: Hashlogics
+        creator:
+          type: string
+          example: "assignorId"
+        description:
+          type: string
+          example: "12345678"
+        assignee:
+          type: string
+          example: "assigneeId"
+        dueDate:
+          type: string
+          example: "assigneeId"
+        priority:
+          type: string
+          example: "not yet working"
+        status:
+          type: string
+          example: "not yet started"
+    
