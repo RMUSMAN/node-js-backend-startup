@@ -10,11 +10,11 @@ const sendEmailToVerifyAccount = async (user, req, res, resend = false) => {
       to: user.email,
       from: {
         email: process.env.SMTP_EMAIL,
-        name: 'Naplozz',
+        name: 'Hashlogics',
       },
       templateId: process.env.TEMPLATE_ID,
       dynamic_template_data: {
-        subject: 'Your Naplozz email verification request',
+        subject: 'Your Hashlogics email verification request',
         // name: `${user.firstName} ${user.lastName}`,
         code: token.token,
         for: 'verify your account',
@@ -47,14 +47,14 @@ const sendForgotPasswordCode = async (user, req, res) => {
       to: user.email,
       from: {
         email: process.env.SMTP_EMAIL,
-        name: 'Naplozz',
+        name: 'Hashlogics',
       },
       templateId: process.env.TEMPLATE_ID,
       dynamic_template_data: {
-        subject: 'Your Naplozz password reset request',
+        subject: 'Your Hashlogics password reset request',
         // name: `${user.firstName} ${user.lastName}`,
         code: token.token,
-        fromname: 'naplozz',
+        fromname: 'Hashlogics',
         for: 'reset your account',
       },
     };
@@ -75,15 +75,15 @@ const sendInviteEmail = async (user, link, req, res) => {
       to: user.email,
       from: {
         email: process.env.SMTP_EMAIL,
-        name: 'Naplozz',
+        name: 'Hashlogics',
       },
 
       templateId: process.env.INVITE_TEMPLATE_ID,
       dynamic_template_data: {
-        subject: `You have been added as a ${user.role} within Naplozz`,
-        heading: 'Welcome to Naplozz!',
-        description: `You have been added as a ${user.role} within Naplozz. Please follow the link below to get started and to set up your Naplozz profile`,
-        preHeader: `You have been added as a supervisor within Naplozz`,
+        subject: `You have been added as a ${user.role} within Hashlogics`,
+        heading: 'Welcome to Hashlogics!',
+        description: `You have been added as a ${user.role} within Hashlogics. Please follow the link below to get started and to set up your Hashlogics profile`,
+        preHeader: `You have been added as a supervisor within Hashlogics`,
         link: link,
       },
     };

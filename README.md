@@ -1,6 +1,6 @@
-# naplozz-backend
+# Hashlogics-backend
 
-Naplozz logging app
+Hashlogics logging app
 
 ## Get Started
 
@@ -112,7 +112,7 @@ npm run lint
 Deploy to CloudFoundry
 
 ```shell
-cf push naplozz-backend
+cf push Hashlogics-backend
 ```
 
 

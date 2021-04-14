@@ -1,7 +1,7 @@
 {
-  "name": "naplozz-backend",
+  "name": "Hashlogics-backend",
   "version": "1.0.0",
-  "description": "Naplozz logging app",
+  "description": "Hashlogics logging app",
   "main": "index.js",
   "scripts": {
     "start": "node dist/index.js",
